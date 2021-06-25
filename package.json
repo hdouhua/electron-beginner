@@ -1,0 +1,8 @@
+{
+    "workspaces":[
+        "c01/3-hello-electron",
+        "c01/8-pomodoro/**",
+        "c01/10-ipc",
+        "c01/12-lazy-load"
+    ]
+}
