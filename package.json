@@ -1,8 +1,16 @@
 {
-    "workspaces":[
-        "c01/3-hello-electron",
-        "c01/8-pomodoro/**",
-        "c01/10-ipc",
-        "c01/12-lazy-load"
-    ]
+  "workspaces": [
+    "c01/3-hello-electron",
+    "c01/8-pomodoro/**",
+    "c01/10-ipc",
+    "c01/12-lazy-load",
+    "c02/3-6-remote-control-local-mock",
+    "c02/4-robot-heart",
+    "c02/7-11-remote-control",
+    "c02/10-signal",
+    "c02/12-remote-control"
+  ],
+  "scripts": {
+    "version": "electron -v && electron -a"
+  }
 }
