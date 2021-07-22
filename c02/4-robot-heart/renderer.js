@@ -1,4 +1,19 @@
-const { ipcRenderer } = require('electron')
+const { ipcRenderer } = require('electron');
+
+const canvas = document.getElementById('robotHeart');
+const context = canvas.getContext("2d");
+canvas.width = window.innerWidth - 30
+canvas.height = window.innerHeight - 30
+
+canvas.draw = function (x, y) {
+  let radius = 2;
+
+  context.fillStyle = '#ff0000';
+  context.beginPath();
+  context.moveTo(x, y);
+  context.arc(x, y, radius, 0, Math.PI * 2, false);
+  context.fill();
+};
 
 function sleep(ms) {
   return new Promise(resolve => {
@@ -6,11 +21,11 @@ function sleep(ms) {
   })
 }
 
+// 把每个点连接起来
 async function draw(x, y) {
-  // 把每个点连接起来
+  // console.debug(x, y)
   await sleep(10)
   ipcRenderer.send('robot-move', x + 400, y + 300)
-  // context.fill();
 }
 
 setTimeout(() => {
@@ -25,7 +40,7 @@ setTimeout(() => {
   let x10 = a, x20 = a / 2, y10 = 0, y20 = 0
   let x = 2 * a, y = 0
   let x1 = x, y1 = y
-  // function draw(x, y) {console.log(x,y)}
+
   draw(x1, y1)
 
   for (let i = 0; i <= n * 10; i++) {
@@ -42,3 +57,9 @@ setTimeout(() => {
   }
 
 }, 2000)
+
+ipcRenderer.on('robot-draw', (e, x, y) => {
+  // console.debug('robot', x, y)
+
+  canvas.draw(x, y)
+})
