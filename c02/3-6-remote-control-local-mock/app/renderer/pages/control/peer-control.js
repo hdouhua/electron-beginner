@@ -1,6 +1,7 @@
 const EventEmitter = require('events')
-const peer = new EventEmitter()
 const { ipcRenderer, desktopCapturer } = require('electron')
+
+const peer = new EventEmitter()
 
 async function getScreenStream() {
   const sources = await desktopCapturer.getSources({ types: ['screen'] })
@@ -22,8 +23,6 @@ async function getScreenStream() {
   })
 }
 
-getScreenStream()
-
 peer.on('robot', (type, data) => {
   console.log('robot', type, data)
 
@@ -39,5 +38,7 @@ peer.on('robot', (type, data) => {
   }, 2000)
 
 })
+
+getScreenStream()
 
 module.exports = peer
